@@ -1,0 +1,39 @@
+mysql> CREATE TABLE CrazyBarnForCrazyChicks (id INT AUTO_INCREMENT PRIMARY KEY);                                 
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> alter table CrazyBarnForCrazyChicks add column AlbinoChickens int;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe CrazyBarnForCrazyChicks;
++----------------+---------+------+-----+---------+----------------+
+| Field          | Type    | Null | Key | Default | Extra          |
++----------------+---------+------+-----+---------+----------------+
+| id             | int(11) | NO   | PRI | NULL    | auto_increment |
+| AlbinoChickens | int(11) | YES  |     | NULL    |                |
++----------------+---------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> create table AnimalsOfTheDead (id INT AUTO_INCREMENT PRIMARY KEY);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> alter table AnimalsOfTheDead add column BarnID int, add column animals('AlbinoChickens', 'Tigers', 'BoringRosters'), add column birthday datetime;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '('AlbinoChickens', 'Tigers', 'BoringRosters'), add column birthday datetime' at line 1
+mysql> alter table AnimalsOfTheDead add column BarnID int, add column animals('AlbinoChickens', 'Tigers', 'BoringRosters'), add column birthday DATETIME;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '('AlbinoChickens', 'Tigers', 'BoringRosters'), add column birthday DATETIME' at line 1
+mysql> alter table AnimalsOfTheDead add column BarnID int(11), add column animals('AlbinoChickens', 'Tigers', 'BoringRosters'), add column birthday DATETIME;                                                                     
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '('AlbinoChickens', 'Tigers', 'BoringRosters'), add column birthday DATETIME' at line 1
+mysql> alter table AnimalsOfTheDead add column BarnID int, add column animals enum('AlbinoChickens', 'Tigers', 'BoringRosters'), add column birthday DATETIME;                                                                    
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe AnimalsOfTheDead;
++----------+-------------------------------------------------+------+-----+---------+----------------+
+| Field    | Type                                            | Null | Key | Default | Extra          |
++----------+-------------------------------------------------+------+-----+---------+----------------+
+| id       | int(11)                                         | NO   | PRI | NULL    | auto_increment |
+| BarnID   | int(11)                                         | YES  |     | NULL    |                |
+| animals  | enum('AlbinoChickens','Tigers','BoringRosters') | YES  |     | NULL    |                |
+| birthday | datetime                                        | YES  |     | NULL    |                |
++----------+-------------------------------------------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
