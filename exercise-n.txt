@@ -1,0 +1,182 @@
+//SORRY ABOUT THAT :(
+
+magiky13:~/workspace (master) $ mysql-ctl start
+ * Starting MySQL database server mysqld                                                                                                                      [ OK ] 
+magiky13:~/workspace (master) $ show databases;
+bash: show: command not found
+magiky13:~/workspace (master) $ show databases
+bash: show: command not found
+magiky13:~/workspace (master) $ mysql -u magiky13 -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'magiky13'@'localhost' (using password: YES)
+magiky13:~/workspace (master) $ mysql -u magiky13
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 61
+Server version: 5.5.49-0ubuntu0.14.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases
+    -> \c
+mysql> show databases
+    -> \c
+mysql> show databases;
++-----------------------+
+| Database              |
++-----------------------+
+| information_schema    |
+| c9                    |
+| decodemtl_addressbook |
+| mysql                 |
+| performance_schema    |
+| phpmyadmin            |
++-----------------------+
+6 rows in set (0.00 sec)
+
+mysql> create table decodemtl_addressbook (account, address_book, entry, test);                                                                            
+ERROR 1046 (3D000): No database selected
+mysql> use decodemtl_addressbook
+Database changed
+mysql> create table decodemtl_addressbook (account, address_book, entry, test);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ' address_book, entry, test)' at line 1
+mysql> use decodemtl_addressbook
+Database changed
+mysql> CREATE TABLE expenses (
+    ->     id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     expense_date DATETIME,
+    ->     category ENUM('food', 'rent', 'fun'),
+    ->     price_in_cents INT,
+    ->     description VARCHAR(150)
+    -> \c
+mysql> CREATE TABLE Account (id INT AUTO_INCREMENT PRIMARY KEY);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> CREATE TABLE AddressBook (id INT AUTO_INCREMENT PRIMARY KEY);                                                                                                 
+Query OK, 0 rows affected (0.01 sec)
+
+mysql>  CREATE TABLE Entry (id INT AUTO_INCREMENT PRIMARY KEY);                                                                                                      
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> CREATE TABLE Test (id INT AUTO_INCREMENT PRIMARY KEY);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> DROP TABLE Test;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show tables;
++---------------------------------+
+| Tables_in_decodemtl_addressbook |
++---------------------------------+
+| Account                         |
+| AddressBook                     |
+| Entry                           |
++---------------------------------+
+3 rows in set (0.00 sec)
+
+mysql> ALTER TABLE decodemtl_addressbook
+    -> ADD COLUMN Account.id INT AUTO_INCREMENT PRIMARY KEY,
+    -> ADD COLUMN AddressBook.id INT AUTO_INCREMENT PRIMARY KEY,
+mysql> describe account;
+ERROR 1146 (42S02): Table 'decodemtl_addressbook.account' doesn't exist
+mysql> describe Account;                                                                                                                                             
++-------+---------+------+-----+---------+----------------+
+| Field | Type    | Null | Key | Default | Extra          |
++-------+---------+------+-----+---------+----------------+
+| id    | int(11) | NO   | PRI | NULL    | auto_increment |
++-------+---------+------+-----+---------+----------------+
+1 row in set (0.00 sec)
+
+mysql> drop table Account;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> describe Account;                                                                                                                                             
+ERROR 1146 (42S02): Table 'decodemtl_addressbook.Account' doesn't existmysql> create table Account (id int(11) unsigned not null auto_increment, email varchar(100) not null, password varchar(100) not null, createdOn timestamp, modifiedOn timeStamp);                                                                                                                                                        ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a keymysql> create table Account (id int(11) unsigned not null auto_increment, email varchar(100) not null, password varchar(100) not null, createdOn timestamp, modifiedOn timeStamp, primary key (id));
+Query OK, 0 rows affected (0.00 sec)
+mysql> describeAccount;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'describeAccount' at line 1
+mysql> describe Account;
++------------+------------------+------+-----+---------------------+-----------------------------+
+| Field      | Type             | Null | Key | Default             | Extra                       |
+| createdOn  | timestamp        | NO   |     | CURRENT_TIMESTAMP   | on update CURRENT_TIMESTAMP |
+| modifiedOn | timestamp        | NO   |     | 0000-00-00 00:00:00 |                             |
++------------+------------------+------+-----+---------------------+-----------------------------+
+5 rows in set (0.00 sec)
+
+mysql> ALTER TABLE AddressBook  ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY, ADD COLUMN id INT AUTO_INCREMENT PRIMARmymysql> create table Account (id int(11) unsigned not null auto_increment, accountid int not null, name varchar(100) not
+ null, createdOn timestamp, modifiedOn timeStamp, primary key (id));                                                   ERROR 1050 (42S01): Table 'Account' already existsmysql> create table AddressBook (id int(11) unsigned not null auto_increment, accountid int not null, name varchar(100) not null, createdOn timestamp, modifiedOn timeStamp, primary key (id));
+ERROR 1050 (42S01): Table 'AddressBook' already exists
+mysql> describe AdressBook    -> \c
+mysql> describe AddressBook;
++-------+---------+------+-----+---------+----------------+
+| Field | Type    | Null | Key | Default | Extra          |
++-------+---------+------+-----+---------+----------------+
+| id    | int(11) | NO   | PRI | NULL    | auto_increment |
++-------+---------+------+-----+---------+----------------+
+1 row in set (0.00 sec)
+
+mysql> ALE
+    -> \c
+mysql> ALTER TABLE AddressBook ADD COLUMN accountid int not null, name varchar(100) not null, createdOn timestamp, modifiedOn timeStamp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name varchar(100) not null, createdOn timestamp, modifiedOn timeStamp' at line 1
+mysql> ALTER TABLE AddressBook ADD COLUMN accountid int, name varchar(100) not null, createdOn timestamp, modifiedOn timeStamp;                                                                                                               ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name varchar(100) not null, createdOn timestamp, modifiedOn timeStamp' at line 1mysql> ALTER TABLE AddressBook ADD COLUMN accountid int(11), name varchar(100) not null, createdOn timestamp, modifiedOn timeStamp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name varchar(100) not null, createdOn timestamp, modifiedOn timeStamp' at line 1
+mysql> ALTER TABLE AddressBook ADD COLUMN accountid int, name varchar(100) not null, createdOn timestamp, modifiedOn timeStamp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name varchar(100) not null, createdOn timestamp, modifiedOn timeStamp' at line 1
+mysql> ALTER TABLE AddressBook ADD COLUMN accountid int(11), ADD COLUMN name varchar(100) not null, ADD COLUMN createdOn timestamp, ADD COLUMN modifiedOn timeStamp;                                                              
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe AddressBook
+    -> \c
+mysql> describe AdressBook;
+ERROR 1146 (42S02): Table 'decodemtl_addressbook.AdressBook' doesn't exist
+mysql> describe AddressBook;
++------------+--------------+------+-----+---------------------+-----------------------------+
+| Field      | Type         | Null | Key | Default             | Extra                       |
++------------+--------------+------+-----+---------------------+-----------------------------+
+| id         | int(11)      | NO   | PRI | NULL                | auto_increment              |
+| accountid  | int(11)      | YES  |     | NULL                |                             |
+| name       | varchar(100) | NO   |     | NULL                |                             |
+| createdOn  | timestamp    | NO   |     | CURRENT_TIMESTAMP   | on update CURRENT_TIMESTAMP |
+| modifiedOn | timestamp    | NO   |     | 0000-00-00 00:00:00 |                             |
++------------+--------------+------+-----+---------------------+-----------------------------+
+5 rows in set (0.00 sec)
+
+mysql> describe Entry;
++-------+---------+------+-----+---------+----------------+
+| Field | Type    | Null | Key | Default | Extra          |
++-------+---------+------+-----+---------+----------------+
+| id    | int(11) | NO   | PRI | NULL    | auto_increment |
++-------+---------+------+-----+---------+----------------+
+1 row in set (0.00 sec)
+
+mysql> ALTER TABLE Entry ADD COLUMN addressBookId int, firstName VARCHAR(255), lastName VARCHAR(255), birthday DATETIME, type ENUM('work', 'home', 'other'), subtype ENUM('phone', 'address', 'email'), contentLineOne VARCHAR(255), contentLineTwo varchar(255), contentLineThree varchar(255), contentLineFour varchar(255), contentLineFive varchar(255);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'firstName VARCHAR(255), lastName VARCHAR(255), birthday DATETIME, type ENUM('wor' at line 1
+mysql> ALTER TABLE Entry ADD COLUMN addressBookId int, ADD COLUMN firstName VARCHAR(255), ADD COLUMN lastName VARCHAR(255), ADD COLUMN birthday DATETIME, ADD COLUMN type ENUM('work', 'home', 'other'), ADD COLUMN subtype ENUM('phone', 'address', 'email'), ADD COLUMN contentLineOne VARCHAR(255), ADD COLUMN contentLineTwo varchar(255), ADD COLUMN contentLineThree varchar(255), ADD COLUMN contentLineFour varchar(255), ADD COLUMN contentLineFive varchar(255);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe Entry;
++------------------+---------------------------------+------+-----+---------+----------------+
+| Field            | Type                            | Null | Key | Default | Extra          |
++------------------+---------------------------------+------+-----+---------+----------------+
+| id               | int(11)                         | NO   | PRI | NULL    | auto_increment |
+| addressBookId    | int(11)                         | YES  |     | NULL    |                |
+| firstName        | varchar(255)                    | YES  |     | NULL    |                |
+| lastName         | varchar(255)                    | YES  |     | NULL    |                |
+| birthday         | datetime                        | YES  |     | NULL    |                |
+| type             | enum('work','home','other')     | YES  |     | NULL    |                |
+| subtype          | enum('phone','address','email') | YES  |     | NULL    |                |
+| contentLineOne   | varchar(255)                    | YES  |     | NULL    |                |
+| contentLineTwo   | varchar(255)                    | YES  |     | NULL    |                |
+| contentLineThree | varchar(255)                    | YES  |     | NULL    |                |
+| contentLineFour  | varchar(255)                    | YES  |     | NULL    |                |
+| contentLineFive  | varchar(255)                    | YES  |     | NULL    |                |
++------------------+---------------------------------+------+-----+---------+----------------+
+12 rows in set (0.00 sec)
